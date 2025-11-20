@@ -1,6 +1,8 @@
-import { Link } from '@tanstack/react-router'
+"use client";
 
-import { useState } from 'react'
+import { Link } from "@tanstack/react-router";
+
+import { useEffect, useState } from "react";
 import {
   ChevronDown,
   ChevronRight,
@@ -10,21 +12,38 @@ import {
   SquareFunction,
   StickyNote,
   X,
-} from 'lucide-react'
+} from "lucide-react";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/tanstack-react-start";
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const [groupedExpanded, setGroupedExpanded] = useState<
     Record<string, boolean>
-  >({})
+  >({});
+
+  console.log("rendering header");
+
+  useEffect(() => {
+    alert("hello");
+    console.log("useEffect");
+  }, []);
 
   return (
     <>
       <header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            console.log("Menu button clicked!");
+            setIsOpen(true);
+          }}
           className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
           aria-label="Open menu"
+          type="button"
         >
           <Menu size={24} />
         </button>
@@ -37,11 +56,34 @@ export default function Header() {
             />
           </Link>
         </h1>
+        {/* 
+        <div className="ml-auto z-50">
+          <button
+            className="bg-cyan-600 hover:bg-cyan-700 transition-colors text-white px-4 py-2 rounded-md cursor-pointer"
+            onClick={() => {
+              console.log("sign in");
+            }}
+          >
+            Fuck
+          </button>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <button
+              className="bg-cyan-600 hover:bg-cyan-700 transition-colors text-white px-4 py-2 rounded-md cursor-pointer"
+              onClick={() => {
+                console.log("sign in");
+              }}
+            >
+              Sign in
+            </button>
+          </SignedOut> </div> */}
       </header>
 
       <aside
         className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+          isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
@@ -62,7 +104,7 @@ export default function Header() {
             className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
             activeProps={{
               className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                "flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2",
             }}
           >
             <Home size={20} />
@@ -77,7 +119,7 @@ export default function Header() {
             className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
             activeProps={{
               className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                "flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2",
             }}
           >
             <SquareFunction size={20} />
@@ -90,7 +132,7 @@ export default function Header() {
             className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
             activeProps={{
               className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                "flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2",
             }}
           >
             <Network size={20} />
@@ -104,7 +146,7 @@ export default function Header() {
               className="flex-1 flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
               activeProps={{
                 className:
-                  'flex-1 flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                  "flex-1 flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2",
               }}
             >
               <StickyNote size={20} />
@@ -134,7 +176,7 @@ export default function Header() {
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
                 activeProps={{
                   className:
-                    'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                    "flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2",
                 }}
               >
                 <StickyNote size={20} />
@@ -147,7 +189,7 @@ export default function Header() {
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
                 activeProps={{
                   className:
-                    'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                    "flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2",
                 }}
               >
                 <StickyNote size={20} />
@@ -160,7 +202,7 @@ export default function Header() {
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
                 activeProps={{
                   className:
-                    'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                    "flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2",
                 }}
               >
                 <StickyNote size={20} />
@@ -173,5 +215,5 @@ export default function Header() {
         </nav>
       </aside>
     </>
-  )
+  );
 }
